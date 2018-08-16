@@ -8,7 +8,7 @@ _extramodules=extramodules-4.19-MANJARO
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
 pkgver=396.51
-pkgrel=0.1
+pkgrel=0.2
 epoch=1
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
@@ -37,6 +37,9 @@ prepare() {
     sed -i -e 's/MODULE_LICENSE("NVIDIA")/MODULE_LICENSE("GPL")/g' kernel/nvidia/{nv,nv-frontend}.c
     sed -i -e 's/MODULE_LICENSE("MIT")/MODULE_LICENSE("GPL")/g' kernel/nvidia-uvm/uvm_{common,unsupported}.c
     sed -i -e 's/MODULE_LICENSE("MIT")/MODULE_LICENSE("GPL")/g' kernel/nvidia-drm/nvidia-drm-linux.c
+    # Linux 419 compat
+    sed -i -e 's/drm_mode_connector_attach_encoder/drm_connector_attach_encoder/g' kernel/nvidia-drm/nvidia-drm-encoder.c
+    sed -i -e 's/drm_mode_connector_update_edid_property/drm_connector_update_edid_property/g' kernel/nvidia-drm/nvidia-drm-connector.c
 }
 
 build() {
