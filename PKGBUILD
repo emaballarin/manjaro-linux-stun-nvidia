@@ -7,7 +7,7 @@ _linuxprefix=linux419
 _extramodules=extramodules-4.19-MANJARO
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
-pkgver=396.54
+pkgver=410.57
 pkgrel=0.19
 epoch=1
 provides=("$_pkgname=$pkgver")
@@ -23,7 +23,7 @@ install=nvidia.install
 options=(!strip)
 durl="http://us.download.nvidia.com/XFree86/Linux-x86"
 source_x86_64=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
-sha256sums_x86_64=('ac4a2224eff9062c32697fe6878832467321952093e9bff37eaea353a1731bd2')
+sha256sums_x86_64=('1ad40d83ec712843c1b5593949abefc9093399fb26a418ae9a571fbd1d9b228e')
 
 [[ "$CARCH" = "x86_64" ]] && _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 
