@@ -8,7 +8,7 @@ _extramodules=extramodules-4.19-MANJARO
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
 pkgver=410.73
-pkgrel=0.29
+pkgrel=1
 epoch=1
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
