@@ -22,8 +22,10 @@ license=('custom')
 install=nvidia-STUN.install
 options=(!strip)
 durl="http://us.download.nvidia.com/XFree86/Linux-x86"
-source_x86_64=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
-sha256sums_x86_64=('7d6b6c9931f8b89404149a5fdf7a580edae0cd567cc2d4ffe3823b1af02a705d')
+source_x86_64=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run"
+               "nvidia-performance-trailing.patch")
+sha256sums_x86_64=('7d6b6c9931f8b89404149a5fdf7a580edae0cd567cc2d4ffe3823b1af02a705d'
+                   '606b081f69305969723beb6d283334f918f6eb53b99cd91afac15eefdec8c924')
 
 [[ "$CARCH" = "x86_64" ]] && _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 
@@ -31,6 +33,11 @@ prepare() {
     sh "${_pkg}.run" --extract-only
     cd "${_pkg}"
     # patches here
+    echo ' '
+    echo 'Nvidia performance patch and trailing spaces...'
+    patch -Np1 -i ../nvidia-performance-trailing.patch
+    echo '--- ---'
+    echo ' '
     # drm: Drop DRM_CONTROL_ALLOW from ioctls
     sed -i -e 's/DRM_CONTROL_ALLOW|//g' kernel/nvidia-drm/nvidia-drm-drv.c
     # GPL-incompatible module nvidia.ko uses GPL-only symbol '__put_devmap_managed_page
