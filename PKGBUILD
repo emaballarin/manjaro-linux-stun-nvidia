@@ -3,8 +3,8 @@
 
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-_linuxprefix=linux419
-_extramodules=extramodules-4.19-MANJARO
+_linuxprefix=linux419-STUN
+_extramodules=extramodules-4.19-STUN
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
 pkgver=410.73
@@ -19,7 +19,7 @@ depends=("$_linuxprefix" "nvidia-utils=${epoch}:${pkgver}")
 makedepends=("$_linuxprefix-headers")
 conflicts=('nvidia-96xx' 'nvidia-173xx')
 license=('custom')
-install=nvidia.install
+install=nvidia-STUN.install
 options=(!strip)
 durl="http://us.download.nvidia.com/XFree86/Linux-x86"
 source_x86_64=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
@@ -60,5 +60,5 @@ package() {
             "${pkgdir}/usr/lib/modules/${_extramodules}/nvidia-uvm.ko"
     fi
     gzip "${pkgdir}/usr/lib/modules/${_extramodules}/"*.ko
-    sed -i -e "s/EXTRAMODULES='.*'/EXTRAMODULES='${_extramodules}'/" "${startdir}/nvidia.install"
+    sed -i -e "s/EXTRAMODULES='.*'/EXTRAMODULES='${_extramodules}'/" "${startdir}/nvidia-STUN.install"
 }
