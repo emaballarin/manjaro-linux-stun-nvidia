@@ -7,7 +7,7 @@ _linuxprefix=linux419-STUN
 _extramodules=extramodules-4.19-STUN
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
-pkgver=410.78
+pkgver=410.73
 pkgrel=1
 epoch=1
 provides=("$_pkgname=$pkgver")
@@ -24,7 +24,7 @@ options=(!strip)
 durl="http://us.download.nvidia.com/XFree86/Linux-x86"
 source_x86_64=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run"
                "nvidia-performance-trailing.patch")
-sha256sums_x86_64=('5d5efb15d689cf3dd6652ba9379c7e5c339dfc3de9ac6734090a9421167dbcb3'
+sha256sums_x86_64=('7d6b6c9931f8b89404149a5fdf7a580edae0cd567cc2d4ffe3823b1af02a705d'
                    '606b081f69305969723beb6d283334f918f6eb53b99cd91afac15eefdec8c924')
 
 [[ "$CARCH" = "x86_64" ]] && _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
