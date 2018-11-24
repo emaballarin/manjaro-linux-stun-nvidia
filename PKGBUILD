@@ -15,7 +15,7 @@ groups=("$_linuxprefix-extramodules")
 pkgdesc="NVIDIA drivers for linux."
 arch=('x86_64')
 url="http://www.nvidia.com/"
-depends=("$_linuxprefix" "nvidia-utils=${epoch}:${pkgver}")
+depends=("$_linuxprefix" "nvidia-utils>=${epoch}:${pkgver}")
 makedepends=("$_linuxprefix-headers")
 conflicts=('nvidia-96xx' 'nvidia-173xx')
 license=('custom')
