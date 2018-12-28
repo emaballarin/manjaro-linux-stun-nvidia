@@ -3,8 +3,8 @@
 
 # Maintainer: Philip Müller <philm@manjaro.org>
 
-_linuxprefix=linux420
-_extramodules=extramodules-4.20-MANJARO
+_linuxprefix=linux420-STUN
+_extramodules=extramodules-4.20-STUN
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
 pkgver=415.25
@@ -15,15 +15,17 @@ groups=("$_linuxprefix-extramodules")
 pkgdesc="NVIDIA drivers for linux."
 arch=('x86_64')
 url="http://www.nvidia.com/"
-depends=("$_linuxprefix" "nvidia-utils=${epoch}:${pkgver}")
+depends=("$_linuxprefix" "nvidia-utils>=${epoch}:${pkgver}")
 makedepends=("$_linuxprefix-headers")
 conflicts=('nvidia-96xx' 'nvidia-173xx')
 license=('custom')
-install=nvidia.install
+install=nvidia-STUN.install
 options=(!strip)
 durl="http://us.download.nvidia.com/XFree86/Linux-x86"
-source_x86_64=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run")
-sha256sums_x86_64=('2031f3227df1bb2bff84f5783e97b2a72ad5cf064cfa3ad68dd369ff27dc95e6')
+source_x86_64=("${durl}_64/${pkgver}/NVIDIA-Linux-x86_64-${pkgver}-no-compat32.run"
+               "nvidia-performance-trailing.patch")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
 
 [[ "$CARCH" = "x86_64" ]] && _pkg="NVIDIA-Linux-x86_64-${pkgver}-no-compat32"
 
@@ -31,6 +33,7 @@ prepare() {
     sh "${_pkg}.run" --extract-only
     cd "${_pkg}"
     # patches here
+
 }
 
 build() {
@@ -51,5 +54,5 @@ package() {
             "${pkgdir}/usr/lib/modules/${_extramodules}/nvidia-uvm.ko"
     fi
     gzip "${pkgdir}/usr/lib/modules/${_extramodules}/"*.ko
-    sed -i -e "s/EXTRAMODULES='.*'/EXTRAMODULES='${_extramodules}'/" "${startdir}/nvidia.install"
+    sed -i -e "s/EXTRAMODULES='.*'/EXTRAMODULES='${_extramodules}'/" "${startdir}/nvidia-STUN.install"
 }
