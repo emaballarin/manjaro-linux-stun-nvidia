@@ -8,7 +8,7 @@ _extramodules=extramodules-4.20-STUN
 pkgname=$_linuxprefix-nvidia
 _pkgname=nvidia
 pkgver=415.25
-pkgrel=1
+pkgrel=2
 epoch=1
 provides=("$_pkgname=$pkgver")
 groups=("$_linuxprefix-extramodules")
